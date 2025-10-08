@@ -1,5 +1,4 @@
 This repo marks my formal entry into building dapps.
-only onwards and upwards from here
 
 ## Sample Hardhat Project
 
