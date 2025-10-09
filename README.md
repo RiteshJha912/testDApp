@@ -1,4 +1,4 @@
-This repo marks my formal entry into building dapps.
+ahh, incomplete 
 
 ## Sample Hardhat Project
 
