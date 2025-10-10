@@ -9,18 +9,34 @@ function App() {
     contract: null,
   })
 
+  const[account, setAccount] = useState('Not connected');
+
   useEffect(() => {
     const template = async () => {
       const contractAddress = ''
       const contractABI = ''
-
-      const { ethereum } = window
+      try{
+          const { ethereum } = window
 
       const account = await ethereum.request({
         method: 'eth_requestAccounts',
       })
-    }
 
+      setAccount(account);
+
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+
+      const contract = new ethers.Contract(
+        contractAddress,
+        contractABI,
+        signer
+      )
+      setState({ provider, signer, contract });
+      } catch (error) {
+        alert(error);
+      }
+    }
     template()
   }, [])
 
