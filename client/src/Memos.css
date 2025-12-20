@@ -1,0 +1,482 @@
+/* Monochromatic Geometric Minimalist - Streamlined Memos Component */
+
+.memos-container {
+    max-width: 1200px;
+    margin: 64px auto 0;
+    padding: 56px;
+    background: #FFFFFF;
+    border: 2px solid #000000;
+}
+
+/* Header */
+.memos-header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.header-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.decoration-line {
+    width: 60px;
+    height: 1px;
+    background: #C0C0C0;
+}
+
+.decoration-square {
+    width: 8px;
+    height: 8px;
+    border: 1px solid #000000;
+    transform: rotate(45deg);
+}
+
+.memos-title {
+    font-family: 'Courier New', monospace;
+    font-size: 36px;
+    font-weight: 900;
+    color: #000000;
+    margin: 0 0 16px 0;
+    letter-spacing: 6px;
+}
+
+.memos-subtitle {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #666666;
+    text-transform: uppercase;
+    margin: 0 0 24px 0;
+}
+
+.memo-count {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid #E5E5E5;
+    background: #FAFAFA;
+    margin-top: 16px;
+}
+
+.count-number {
+    font-family: 'Courier New', monospace;
+    font-size: 24px;
+    font-weight: 900;
+    color: #000000;
+    letter-spacing: 2px;
+}
+
+.count-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #666666;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+/* Status Messages */
+.status-message {
+    text-align: center;
+    padding: 80px 48px;
+}
+
+.status-icon {
+    font-size: 48px;
+    margin-bottom: 24px;
+    opacity: 0.5;
+}
+
+.no-contract,
+.loading {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.status-subtitle {
+    font-size: 11px;
+    color: #666666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.spinner-square {
+    width: 12px;
+    height: 12px;
+    background: #000000;
+    animation: spinnerPulse 1.2s infinite ease-in-out;
+}
+
+.spinner-square:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.spinner-square:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.spinner-square:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.spinner-square:nth-child(4) {
+    animation-delay: 0.45s;
+}
+
+@keyframes spinnerPulse {
+
+    0%,
+    100% {
+        transform: scaleY(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scaleY(0.4);
+        opacity: 0.3;
+    }
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 80px 48px;
+    border: 1px solid #E5E5E5;
+    background: #FAFAFA;
+}
+
+.empty-icon {
+    font-family: 'Courier New', monospace;
+    font-size: 64px;
+    font-weight: 700;
+    color: #E5E5E5;
+    margin-bottom: 24px;
+}
+
+.no-memos {
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.empty-subtitle {
+    font-size: 11px;
+    color: #666666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* Table */
+.table-wrapper {
+    overflow-x: auto;
+    border: 2px solid #000000;
+}
+
+.memos-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFFFFF;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.memos-table thead {
+    background: #000000;
+    color: #FFFFFF;
+}
+
+.memos-table thead th {
+    padding: 20px 16px;
+    text-align: left;
+    font-weight: 900;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border-right: 1px solid #333333;
+}
+
+.memos-table thead th:last-child {
+    border-right: none;
+}
+
+.memo-row {
+    transition: background 0.2s ease;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.memo-row:last-child {
+    border-bottom: none;
+}
+
+.memo-row:hover {
+    background: #FAFAFA;
+}
+
+.memos-table tbody td {
+    padding: 20px 16px;
+    color: #000000;
+    font-size: 13px;
+    border-right: 1px solid #E5E5E5;
+}
+
+.memos-table tbody td:last-child {
+    border-right: none;
+}
+
+.name-cell {
+    font-weight: 700;
+    color: #000000;
+    min-width: 140px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Courier New', monospace;
+}
+
+.cell-marker {
+    color: #999999;
+    margin-right: 8px;
+    font-weight: 400;
+}
+
+.timestamp-cell {
+    color: #666666;
+    min-width: 180px;
+    font-size: 11px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+}
+
+.message-cell {
+    min-width: 250px;
+    color: #333333;
+    line-height: 1.6;
+}
+
+.address-cell {
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #666666;
+    word-break: break-all;
+    min-width: 300px;
+    letter-spacing: 0.5px;
+}
+
+.address-prefix {
+    color: #000000;
+    font-weight: 700;
+    margin-right: 2px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .memos-container {
+        margin: 48px 16px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .memos-container {
+        margin: 32px 16px 0;
+        padding: 40px 32px;
+    }
+
+    .memos-title {
+        font-size: 28px;
+        letter-spacing: 4px;
+    }
+
+    .memos-subtitle {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .decoration-line {
+        width: 40px;
+    }
+
+    .memo-count {
+        padding: 6px 12px;
+    }
+
+    .count-number {
+        font-size: 20px;
+    }
+
+    .count-label {
+        font-size: 9px;
+    }
+
+    .status-message,
+    .empty-state {
+        padding: 60px 32px;
+    }
+
+    .status-icon,
+    .empty-icon {
+        font-size: 40px;
+    }
+
+    .memos-table thead th {
+        padding: 16px 12px;
+        font-size: 9px;
+    }
+
+    .memos-table tbody td {
+        padding: 16px 12px;
+        font-size: 12px;
+    }
+
+    .name-cell {
+        min-width: 120px;
+    }
+
+    .timestamp-cell {
+        min-width: 160px;
+        font-size: 10px;
+    }
+
+    .message-cell {
+        min-width: 200px;
+    }
+
+    .address-cell {
+        font-size: 10px;
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .memos-container {
+        margin: 24px 12px 0;
+        padding: 32px 24px;
+    }
+
+    .memos-title {
+        font-size: 24px;
+        letter-spacing: 3px;
+    }
+
+    .memos-subtitle {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    .header-decoration {
+        gap: 12px;
+    }
+
+    .decoration-line {
+        width: 30px;
+    }
+
+    .decoration-square {
+        width: 6px;
+        height: 6px;
+    }
+
+    .memo-count {
+        padding: 6px 12px;
+    }
+
+    .count-number {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .count-label {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    .status-message,
+    .empty-state {
+        padding: 48px 24px;
+    }
+
+    .status-icon,
+    .empty-icon {
+        font-size: 32px;
+    }
+
+    .no-contract,
+    .loading,
+    .no-memos {
+        font-size: 12px;
+        letter-spacing: 1.5px;
+    }
+
+    .status-subtitle,
+    .empty-subtitle {
+        font-size: 10px;
+    }
+
+    .loading-spinner {
+        gap: 6px;
+    }
+
+    .spinner-square {
+        width: 10px;
+        height: 10px;
+    }
+
+    .table-wrapper {
+        border-width: 1px;
+    }
+
+    .memos-table thead th {
+        padding: 12px 8px;
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    .memos-table tbody td {
+        padding: 12px 8px;
+        font-size: 11px;
+    }
+
+    .name-cell {
+        min-width: 100px;
+        font-size: 10px;
+    }
+
+    .cell-marker {
+        margin-right: 4px;
+    }
+
+    .timestamp-cell {
+        min-width: 140px;
+        font-size: 9px;
+    }
+
+    .message-cell {
+        min-width: 150px;
+        font-size: 11px;
+    }
+
+    .address-cell {
+        font-size: 9px;
+        min-width: 200px;
+    }
+}

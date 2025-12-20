@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import chaiJson from './contractJson/chai.json'
 import { ethers } from 'ethers'
+import Buy from './Buy'
+import Memos from './Memos'
 import './App.css'
 
 function App() {
@@ -9,7 +11,6 @@ function App() {
     signer: null,
     contract: null,
   })
-
   const [account, setAccount] = useState('Not connected')
 
   useEffect(() => {
@@ -33,19 +34,21 @@ function App() {
         setAccount(accounts[0])
         console.log('Connected account:', accounts[0])
 
+        // Handle ethers v6 (new) and v5 (legacy) compatibility
         let provider, signer
-        if (ethers.providers && ethers.providers.Web3Provider) {
-          provider = new ethers.providers.Web3Provider(ethereum)
-        } else {
+
+        if (ethers.BrowserProvider) {
+          // ethers v6
           provider = new ethers.BrowserProvider(ethereum)
+          signer = await provider.getSigner()
+        } else if (ethers.providers && ethers.providers.Web3Provider) {
+          // ethers v5
+          provider = new ethers.providers.Web3Provider(ethereum)
+          signer = provider.getSigner()
         }
-        signer = await provider.getSigner()
 
         console.log('Provider:', provider)
         console.log('Signer:', signer)
-
-        console.log('Raw JSON:', chaiJson)
-        console.log('Contract ABI:', contractABI)
 
         if (
           !contractABI ||
@@ -63,34 +66,71 @@ function App() {
           contractABI,
           signer
         )
-        
-        const memos = await contract.getMemos()
-        console.log('Memos:', memos)
 
         console.log('Contract:', contract)
-        console.dir(contract, { depth: null })
-        console.log('Contract Address:', contractAddress) // Use the provided address
-        console.log('Contract Interface:', contract.interface)
-        // Avoid contract.functions in v6; list functions via interface
-        console.log(
-          'Contract Function Names:',
-          contract.interface.fragments
-            .filter((f) => f.type === 'function')
-            .map((f) => f.name)
-        )
-        console.log('Contract Filters:', contract.filters)
+
+        // Test contract connection
+        try {
+          const memos = await contract.getMemos()
+          console.log('Memos fetched successfully:', memos)
+        } catch (error) {
+          console.error('Error fetching memos:', error)
+        }
 
         setState({ provider, signer, contract })
       } catch (error) {
         console.error('Error connecting to contract:', error)
       }
     }
+
     template()
   }, [])
 
   return (
     <div className='App'>
-      <h3>Connected Account: {account}</h3>
+      <header className='app-header'>
+        <div className='header-content'>
+          <h1 className='logo'>
+            <span className='logo-bracket'>[</span>
+            <span className='logo-text'>GAS.TIPS</span>
+            <span className='logo-bracket'>]</span>
+          </h1>
+          <p className='tagline'>PROOF OF APPRECIATION</p>
+        </div>
+        <div className='account-info'>
+          <span className='account-label'>CONNECTED WALLET</span>
+          <div className='account-box'>
+            <span className='account-indicator'></span>
+            <span className='account-address'>{account}</span>
+          </div>
+        </div>
+      </header>
+
+      <main className='app-main'>
+        <Buy state={state} />
+        <Memos state={state} />
+      </main>
+
+      <footer className='app-footer'>
+        <div className='footer-grid'>
+          <div className='footer-item'>DECENTRALIZED</div>
+          <div className='footer-divider'></div>
+          <div className='footer-item'>TRUSTLESS</div>
+          <div className='footer-divider'></div>
+          <div className='footer-item'>IMMUTABLE</div>
+        </div>
+        <p className='footer-text'>
+          Built with ❤️ on chain by{' '}
+          <a
+            href='https://github.com/RiteshJha912'
+            target='_blank'
+            rel='noopener noreferrer'
+            style={{ color: 'inherit', textDecoration: 'underline' }} // Optional: basic styling, adjust as needed
+          >
+            Ritzardous
+          </a>
+        </p>{' '}
+      </footer>
     </div>
   )
 }

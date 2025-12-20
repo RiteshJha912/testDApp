@@ -1,0 +1,318 @@
+/* Monochromatic Geometric Minimalist - Streamlined Buy Component */
+
+.center {
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 56px 48px;
+    background: #FFFFFF;
+    margin: 0 auto;
+    border: 2px solid #000000;
+    max-width: 600px;
+}
+
+.form-header {
+    width: 100%;
+    margin-bottom: 56px;
+    text-align: center;
+}
+
+.header-decoration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.decoration-line {
+    width: 40px;
+    height: 1px;
+    background: #C0C0C0;
+    transition: all 0.3s ease;
+}
+
+.decoration-square {
+    width: 8px;
+    height: 8px;
+    border: 1px solid #000000;
+    transform: rotate(45deg);
+}
+
+.center:hover .decoration-line {
+    width: 60px;
+    background: #000000;
+}
+
+.center h1 {
+    font-family: 'Courier New', monospace;
+    color: #000000;
+    font-size: 36px;
+    font-weight: 900;
+    margin: 0 0 16px 0;
+    letter-spacing: 6px;
+}
+
+.form-subtitle {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #666666;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.center form {
+    width: 100%;
+    max-width: 480px;
+}
+
+.inputbox {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.inputbox input[type="text"] {
+    width: 100%;
+    padding: 20px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #C0C0C0;
+    outline: none;
+    color: #000000;
+    font-size: 16px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 1px;
+    transition: border 0.3s ease;
+}
+
+.inputbox input[type="text"]:focus {
+    border-bottom: 2px solid #000000;
+}
+
+.inputbox span {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    color: #999999;
+    font-size: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    font-weight: 700;
+}
+
+.inputbox input[type="text"]:focus~span,
+.inputbox input[type="text"]:valid~span {
+    top: -8px;
+    font-size: 10px;
+    color: #000000;
+    letter-spacing: 3px;
+}
+
+.input-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #000000;
+    transition: width 0.4s ease;
+}
+
+.inputbox input[type="text"]:focus~.input-line {
+    width: 100%;
+}
+
+.transaction-info {
+    background: #FAFAFA;
+    border-left: 4px solid #000000;
+    padding: 24px;
+    margin: 32px 0;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-family: 'Courier New', monospace;
+}
+
+.info-row:not(:last-child) {
+    border-bottom: 1px solid #E5E5E5;
+    margin-bottom: 8px;
+}
+
+.info-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #666666;
+    text-transform: uppercase;
+}
+
+.info-value {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000000;
+    letter-spacing: 1px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 20px 32px;
+    background: #000000;
+    border: 2px solid #000000;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 900;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.submit-button:hover:not(.disabled) {
+    background: #FFFFFF;
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+.button-text,
+.button-arrow {
+    transition: transform 0.3s ease;
+}
+
+.submit-button:hover:not(.disabled) .button-arrow {
+    transform: translateX(8px);
+}
+
+.submit-button:active:not(.disabled) {
+    transform: translateY(0);
+}
+
+.submit-button.disabled,
+.submit-button:disabled {
+    background: #E5E5E5;
+    border-color: #E5E5E5;
+    color: #999999;
+    cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .center {
+        margin: 32px 16px;
+        padding: 40px 32px;
+    }
+
+    .center h1 {
+        font-size: 28px;
+        letter-spacing: 4px;
+    }
+
+    .form-subtitle {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .decoration-line {
+        width: 30px;
+    }
+
+    .inputbox {
+        margin-bottom: 32px;
+    }
+
+    .transaction-info {
+        padding: 20px;
+        margin: 24px 0;
+    }
+
+    .info-label {
+        font-size: 9px;
+    }
+
+    .info-value {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .center {
+        margin: 24px 12px;
+        padding: 32px 24px;
+        min-height: 500px;
+    }
+
+    .center h1 {
+        font-size: 24px;
+        letter-spacing: 3px;
+    }
+
+    .form-subtitle {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    .header-decoration {
+        gap: 12px;
+    }
+
+    .decoration-line {
+        width: 24px;
+    }
+
+    .decoration-square {
+        width: 6px;
+        height: 6px;
+    }
+
+    .inputbox input[type="text"] {
+        font-size: 14px;
+        padding: 16px 0;
+    }
+
+    .inputbox span {
+        font-size: 11px;
+        top: 16px;
+    }
+
+    .inputbox input[type="text"]:focus~span,
+    .inputbox input[type="text"]:valid~span {
+        font-size: 9px;
+    }
+
+    .transaction-info {
+        padding: 16px;
+        margin: 20px 0;
+        border-left-width: 2px;
+    }
+
+    .info-label {
+        font-size: 8px;
+        letter-spacing: 1.5px;
+    }
+
+    .info-value {
+        font-size: 11px;
+    }
+
+    .submit-button {
+        padding: 16px 24px;
+        font-size: 11px;
+        letter-spacing: 2px;
+        gap: 12px;
+    }
+}

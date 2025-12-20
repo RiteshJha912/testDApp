@@ -1,42 +1,272 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Monochromatic Geometric Minimalist - Streamlined App Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+  background: #FAFAFA;
+  min-height: 100vh;
+  color: #000000;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.app-header {
+  background: #FFFFFF;
+  padding: 40px 48px;
+  border-bottom: 2px solid #000000;
+  position: relative;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
   text-align: center;
+  margin-bottom: 32px;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+  font-family: 'Courier New', monospace;
+  font-size: 56px;
+  font-weight: 900;
+  color: #000000;
+  margin: 0;
+  letter-spacing: 8px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.logo-bracket {
+  color: #666666;
+  transition: color 0.3s ease;
+}
+
+.logo:hover .logo-bracket {
+  color: #000000;
+}
+
+.tagline {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #666666;
+  margin-top: 16px;
+  text-transform: uppercase;
+}
+
+.account-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.account-label {
+  font-weight: 700;
+  color: #333333;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.account-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #000000;
+  padding: 12px 24px;
+  border: 2px solid #000000;
+  transition: transform 0.2s ease;
+}
+
+.account-box:hover {
+  transform: translateY(-2px);
+}
+
+.account-indicator {
+  width: 8px;
+  height: 8px;
+  background: #FFFFFF;
+  animation: pulse 2s infinite;
+}
+
+.account-address {
+  font-family: 'Courier New', monospace;
+  color: #FFFFFF;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  word-break: break-all;
+}
+
+/* Main Content */
+.app-main {
+  flex: 1;
+  padding: 64px 16px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Footer */
+.app-footer {
+  background: #000000;
+  color: #FFFFFF;
+  padding: 40px 32px;
+  text-align: center;
+  border-top: 2px solid #000000;
+}
+
+.footer-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-item {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  border: 1px solid #333333;
+  transition: all 0.2s ease;
+}
+
+.footer-item:hover {
+  background: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+.footer-divider {
+  width: 1px;
+  height: 24px;
+  background: #333333;
+}
+
+.footer-text {
+  font-size: 10px;
+  color: #999999;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    opacity: 0.5;
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Responsive */
+@media (max-width: 768px) {
+  .app-header {
+    padding: 32px 24px;
+  }
+
+  .logo {
+    font-size: 40px;
+    letter-spacing: 4px;
+  }
+
+  .tagline {
+    font-size: 10px;
+    letter-spacing: 3px;
+  }
+
+  .account-info {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .account-box {
+    padding: 10px 20px;
+  }
+
+  .account-address {
+    font-size: 10px;
+  }
+
+  .app-main {
+    padding: 48px 16px;
+  }
+
+  .footer-grid {
+    gap: 16px;
+  }
+
+  .footer-item {
+    font-size: 10px;
+    padding: 6px 12px;
   }
 }
 
-.card {
-  padding: 2em;
-}
+@media (max-width: 480px) {
+  .app-header {
+    padding: 24px 16px;
+  }
 
-.read-the-docs {
-  color: #888;
+  .logo {
+    font-size: 32px;
+    letter-spacing: 2px;
+  }
+
+  .tagline {
+    font-size: 9px;
+    letter-spacing: 2px;
+  }
+
+  .account-label {
+    font-size: 9px;
+  }
+
+  .account-box {
+    padding: 8px 16px;
+  }
+
+  .account-indicator {
+    width: 6px;
+    height: 6px;
+  }
+
+  .account-address {
+    font-size: 9px;
+  }
+
+  .app-main {
+    padding: 32px 12px;
+  }
+
+  .footer-grid {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .footer-divider {
+    width: 40px;
+    height: 1px;
+  }
+
+  .footer-item,
+  .footer-text {
+    font-size: 9px;
+  }
 }
