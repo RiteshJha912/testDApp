@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 # GAS.TIPS - Web3 Tip Jar
 
 A decentralized application (dApp) built on Ethereum that allows users to send cryptocurrency tips with personalized messages. This project demonstrates a complete Web3 stack including smart contract development, deployment, and a modern React frontend.
 
 ##  Features
-=======
-## Hardhat, ether 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
->>>>>>> bbabb91fc5b581cb6785e1ddf8afa0e9727d9b1c
 
 - **Send Tips**: Users can send ETH tips with their name and a custom message
 - **View History**: Browse all previous tips and messages in chronological order
