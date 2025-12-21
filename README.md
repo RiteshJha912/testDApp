@@ -1,6 +1,6 @@
 # GAS.TIPS - Web3 Tip Jar
 
-A decentralized application (dApp) built on Ethereum that allows users to send cryptocurrency tips with personalized messages. This project demonstrates a complete Web3 stack including smart contract development, deployment, and a modern React frontend.
+A decentralized application (dApp) built on Ethereum that allows users to send cryptocurrency tips with personalized messages. This project demonstrates a complete Web3 stack including smart contract development, deployment and a React frontend.
 
 ##  Features
 
@@ -10,7 +10,7 @@ A decentralized application (dApp) built on Ethereum that allows users to send c
 - **Real-time Updates**: Automatic refresh after successful transactions
 - **Responsive Design**: Modern, mobile-friendly user interface
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Backend (Smart Contract)
 
@@ -169,30 +169,7 @@ struct Memo {
 - Contract requires payment > 0 ETH
 - Owner receives all funds directly
 - No reentrancy protection needed (simple transfer)
-- Front-end validation for user inputs
+- Front-end validation for user input
 
-##  Deployment
 
-### Contract Deployment
-
-```bash
-npx hardhat ignition deploy ./ignition/modules/Lock.js --network sepolia
-```
-
-### Frontend Deployment
-
-```bash
-cd client
-npm run build
-# Deploy the dist/ folder to your hosting service (Vercel, Netlify, etc.)
-```
-
-##  Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-The readme is full of AI bullshit will write when i get time!!
+## If you find this project useful, don’t forget to star the repo!
