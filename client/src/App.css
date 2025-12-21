@@ -1,5 +1,4 @@
 /* Monochromatic Geometric Minimalist - Streamlined App Styles */
-
 * {
   margin: 0;
   padding: 0;
@@ -67,6 +66,7 @@ body {
   align-items: center;
   gap: 16px;
   flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .account-label {
@@ -91,6 +91,34 @@ body {
   transform: translateY(-2px);
 }
 
+/* Connect Button Styling */
+.connect-btn {
+  cursor: pointer;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  animation: pulse-border 2s infinite;
+}
+
+.connect-btn:hover {
+  background: #333333;
+}
+
+.connect-btn .account-address {
+  letter-spacing: 2px;
+}
+
+@keyframes pulse-border {
+
+  0%,
+  100% {
+    border-color: #000000;
+  }
+
+  50% {
+    border-color: #666666;
+  }
+}
+
 .account-indicator {
   width: 8px;
   height: 8px;
@@ -104,6 +132,32 @@ body {
   font-size: 12px;
   letter-spacing: 0.5px;
   word-break: break-all;
+}
+
+/* Disconnect Button - Reddish Theme */
+.disconnect-btn {
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 12px 24px;
+  background: #FFFFFF;
+  color: #DC2626;
+  border: 2px solid #DC2626;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+}
+
+.disconnect-btn:hover {
+  background: #DC2626;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.disconnect-btn:active {
+  transform: translateY(0);
 }
 
 /* Main Content */
@@ -205,6 +259,11 @@ body {
     font-size: 10px;
   }
 
+  .disconnect-btn {
+    padding: 10px 20px;
+    font-size: 9px;
+  }
+
   .app-main {
     padding: 48px 16px;
   }
@@ -249,6 +308,11 @@ body {
 
   .account-address {
     font-size: 9px;
+  }
+
+  .disconnect-btn {
+    padding: 8px 16px;
+    font-size: 8px;
   }
 
   .app-main {
