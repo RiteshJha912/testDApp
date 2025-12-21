@@ -165,41 +165,33 @@
 
 .submit-button {
     width: 100%;
-    padding: 20px 32px;
+    padding: 24px 32px;
     background: #000000;
     border: 2px solid #000000;
     color: #FFFFFF;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 900;
-    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
+    /* Matches the rest of the form better */
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: 4px;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 16px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
+    transition: all 0.4s ease;
+    margin-top: 24px;
+    text-align: center;
 }
 
 .submit-button:hover:not(.disabled) {
     background: #FFFFFF;
     color: #000000;
-    transform: translateY(-2px);
-}
-
-.button-text,
-.button-arrow {
-    transition: transform 0.3s ease;
-}
-
-.submit-button:hover:not(.disabled) .button-arrow {
-    transform: translateX(8px);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 0 #000000;
+    /* Strong geometric underline effect on hover */
 }
 
 .submit-button:active:not(.disabled) {
     transform: translateY(0);
+    box-shadow: 0 4px 0 #000000;
 }
 
 .submit-button.disabled,
@@ -208,6 +200,7 @@
     border-color: #E5E5E5;
     color: #999999;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 /* Responsive */

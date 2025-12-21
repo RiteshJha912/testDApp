@@ -73,8 +73,7 @@ const Buy = ({ state }) => {
             disabled={!state.contract}
             className={`submit-button ${!state.contract ? 'disabled' : ''}`}
           >
-            <span className='button-text'>EXECUTE TRANSACTION</span>
-            <div className='button-arrow'>→</div>
+            EXECUTE TRANSACTION
           </button>
         </div>
       </form>
