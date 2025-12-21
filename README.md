@@ -49,12 +49,9 @@ chaidapp/
 │   ├── src/                 
 │   │   ├── App.jsx          
 │   │   ├── Buy.jsx          
-│   │   ├── Memos.jsx       
-│   │   │   ├── App.jsx      
-│   │   │   ├── Buy.jsx      
-│   │   │   └── Memos.jsx    
+│   │   ├── Memos.jsx           
 │   │   ├── contractJson/    
-│   │   │   └── chai.json             
+│   │   │   └── chai.json         
 │   ├── package.json         
 │   ├── vite.config.js     
 │   └── eslint.config.js    
