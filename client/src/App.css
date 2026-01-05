@@ -108,22 +108,35 @@ body {
 }
 
 @keyframes pulse-border {
-
   0%,
   100% {
     border-color: #000000;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
   }
-
   50% {
     border-color: #666666;
+    box-shadow: 0 0 0 4px rgba(0, 0, 0, 0);
   }
 }
+
+@keyframes side-to-side {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+     transform: translateX(-3px);
+  }
+  75% {
+     transform: translateX(3px);
+  }
+}
+
 
 .account-indicator {
   width: 8px;
   height: 8px;
   background: #FFFFFF;
-  animation: pulse 2s infinite;
+  animation: side-to-side 1s ease-in-out infinite, pulse 2s infinite;
 }
 
 .account-address {

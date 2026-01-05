@@ -20,57 +20,63 @@ function App() {
       try {
         const { ethereum } = window
         if (!ethereum) {
-          alert('Please install MetaMask!')
+          console.log('Please install MetaMask!')
           return
         }
-        console.log('Requesting accounts...')
+
+        // Check for existing accounts WITHOUT prompting popup
         const accounts = await ethereum.request({
-          method: 'eth_requestAccounts',
+          method: 'eth_accounts',
         })
-        setAccount(accounts[0])
-        console.log('Connected account:', accounts[0])
 
-        // Handle ethers v6 (new) and v5 (legacy) compatibility
-        let provider, signer
-        if (ethers.BrowserProvider) {
-          // ethers v6
-          provider = new ethers.BrowserProvider(ethereum)
-          signer = await provider.getSigner()
-        } else if (ethers.providers && ethers.providers.Web3Provider) {
-          // ethers v5
-          provider = new ethers.providers.Web3Provider(ethereum)
-          signer = provider.getSigner()
-        }
-        console.log('Provider:', provider)
-        console.log('Signer:', signer)
+        if (accounts.length > 0) {
+          setAccount(accounts[0])
+          console.log('Connected account:', accounts[0])
 
-        if (
-          !contractABI ||
-          !Array.isArray(contractABI) ||
-          contractABI.length === 0
-        ) {
-          console.error(
-            'Invalid ABI: Ensure chai.json contains a valid ABI array'
+          // Handle ethers v6 (new) and v5 (legacy) compatibility
+          let provider, signer
+          if (ethers.BrowserProvider) {
+            // ethers v6
+            provider = new ethers.BrowserProvider(ethereum)
+            signer = await provider.getSigner()
+          } else if (ethers.providers && ethers.providers.Web3Provider) {
+            // ethers v5
+            provider = new ethers.providers.Web3Provider(ethereum)
+            signer = provider.getSigner()
+          }
+          console.log('Provider:', provider)
+          console.log('Signer:', signer)
+
+          if (
+            !contractABI ||
+            !Array.isArray(contractABI) ||
+            contractABI.length === 0
+          ) {
+            console.error(
+              'Invalid ABI: Ensure chai.json contains a valid ABI array'
+            )
+            return
+          }
+
+          const contract = new ethers.Contract(
+            contractAddress,
+            contractABI,
+            signer
           )
-          return
+          console.log('Contract:', contract)
+
+          // Test contract connection
+          try {
+            const memos = await contract.getMemos()
+            console.log('Memos fetched successfully:', memos)
+          } catch (error) {
+            console.error('Error fetching memos:', error)
+          }
+
+          setState({ provider, signer, contract })
+        } else {
+          console.log('No authorized account found')
         }
-
-        const contract = new ethers.Contract(
-          contractAddress,
-          contractABI,
-          signer
-        )
-        console.log('Contract:', contract)
-
-        // Test contract connection
-        try {
-          const memos = await contract.getMemos()
-          console.log('Memos fetched successfully:', memos)
-        } catch (error) {
-          console.error('Error fetching memos:', error)
-        }
-
-        setState({ provider, signer, contract })
       } catch (error) {
         console.error('Error connecting to contract:', error)
       }
@@ -79,6 +85,7 @@ function App() {
   }, [])
 
   const connectWallet = async () => {
+    console.log('Connect button clicked')
     const contractAddress = '0x0158180938B2595eDaFBF1216E6A261D77E55C27'
     const contractABI = chaiJson.abi
     try {
@@ -91,6 +98,13 @@ function App() {
       const accounts = await ethereum.request({
         method: 'eth_requestAccounts',
       })
+      console.log('Accounts received:', accounts)
+      
+      if (!accounts || accounts.length === 0) {
+        alert('No accounts found. Please unlock MetaMask.')
+        return
+      }
+
       setAccount(accounts[0])
       console.log('Connected account:', accounts[0])
 
@@ -108,6 +122,13 @@ function App() {
       setState({ provider, signer, contract })
     } catch (error) {
       console.error('Error connecting to contract:', error)
+      if (error.code === 4001) {
+         alert('Please connect to MetaMask.')
+      } else if (error.code === -32002 || (error.message && error.message.includes('already pending'))) {
+         alert('A Meta Mask request is already pending. Please open your MetaMask extension to approve it.')
+      } else {
+         alert('Failed to connect wallet: ' + (error.message || error))
+      }
     }
   }
 
