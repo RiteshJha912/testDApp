@@ -132,6 +132,48 @@ function App() {
     }
   }
 
+  const switchAccount = async () => {
+    try {
+      const { ethereum } = window
+      if (!ethereum) {
+        alert('Please install MetaMask!')
+        return
+      }
+      
+      await ethereum.request({
+        method: 'wallet_requestPermissions',
+        params: [{ eth_accounts: {} }],
+      })
+      
+      // After permission change, we need to get the new accounts
+      const accounts = await ethereum.request({
+        method: 'eth_accounts',
+      })
+      
+      if (accounts.length > 0) {
+        setAccount(accounts[0])
+        // Re-initialize provider/signer with new account
+        let provider, signer
+        if (ethers.BrowserProvider) {
+          provider = new ethers.BrowserProvider(ethereum)
+          signer = await provider.getSigner()
+        } else if (ethers.providers && ethers.providers.Web3Provider) {
+          provider = new ethers.providers.Web3Provider(ethereum)
+          signer = provider.getSigner()
+        }
+        
+        // Re-connect contract
+        const contractAddress = '0x0158180938B2595eDaFBF1216E6A261D77E55C27'
+        const contractABI = chaiJson.abi
+        const contract = new ethers.Contract(contractAddress, contractABI, signer)
+        
+        setState({ provider, signer, contract })
+      }
+    } catch (error) {
+      console.error('Error switching accounts:', error)
+    }
+  }
+
   const disconnectWallet = () => {
     setState({
       provider: null,
@@ -167,9 +209,14 @@ function App() {
             </div>
           )}
           {account !== 'Not connected' && (
-            <button className='disconnect-btn' onClick={disconnectWallet}>
-              DISCONNECT
-            </button>
+            <div className="button-group">
+               <button className='action-btn switch-btn' onClick={switchAccount}>
+                SWITCH
+              </button>
+              <button className='action-btn disconnect-btn' onClick={disconnectWallet}>
+                DISCONNECT
+              </button>
+            </div>
           )}
         </div>
       </header>

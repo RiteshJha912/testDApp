@@ -153,30 +153,71 @@ body {
   word-break: break-all;
 }
 
-/* Disconnect Button - Reddish Theme */
-.disconnect-btn {
+/* Action Buttons */
+.button-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  width: 100%;
+  justify-content: center;
+}
+
+.action-btn {
   font-family: 'Courier New', monospace;
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 12px 24px;
-  background: #FFFFFF;
-  color: #DC2626;
-  border: 2px solid #DC2626;
+  padding: 10px 0;
+  width: 140px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  margin-top: 8px;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid #000000;
+  background: transparent;
+  color: #000000;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Switch Button - Primary Style */
+.switch-btn {
+  background: #000000;
+  color: #FFFFFF;
+}
+
+.switch-btn:hover {
+  background: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 0 #000000;
+  /* Brutalist shadow */
+}
+
+.switch-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 0 0 #000000;
+}
+
+/* Disconnect Button - Secondary Style */
+.disconnect-btn {
+  background: #FFFFFF;
+  color: #9F1239;
+  /* Rose 800 - Subtle dark red */
+  border-color: #9F1239;
 }
 
 .disconnect-btn:hover {
-  background: #DC2626;
+  background: #E11D48;
+  /* Rose 600 - Vibrant red */
   color: #FFFFFF;
+  border-color: #E11D48;
   transform: translateY(-2px);
+  box-shadow: 0 4px 0 #9F1239;
+  /* Dark red shadow */
 }
 
 .disconnect-btn:active {
   transform: translateY(0);
+  box-shadow: 0 0 0 #9F1239;
 }
 
 /* Main Content */
