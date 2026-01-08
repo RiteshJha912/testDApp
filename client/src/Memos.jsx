@@ -4,6 +4,7 @@ import './Memos.css'
 const Memos = ({ state }) => {
   const [memos, setMemos] = useState([])
   const [loading, setLoading] = useState(true)
+  const [visibleCount, setVisibleCount] = useState(5)
   const { contract } = state
 
   useEffect(() => {
@@ -12,7 +13,8 @@ const Memos = ({ state }) => {
         setLoading(true)
         const memos = await contract.getMemos()
         console.log('Fetched memos:', memos)
-        setMemos(memos)
+        // Reverse to show latest first (assuming contract returns chronological order)
+        setMemos([...memos].reverse())
       } catch (error) {
         console.error('Error fetching memos:', error)
       } finally {
@@ -53,6 +55,15 @@ const Memos = ({ state }) => {
         </div>
       </div>
     )
+  }
+
+  /* Helper functions */
+  const shortenAddress = (address) => {
+    return `${address.slice(0, 5)}...${address.slice(address.length - 4)}`
+  }
+
+  const loadMore = () => {
+    setVisibleCount((prev) => prev + 5)
   }
 
   return (
@@ -101,7 +112,7 @@ const Memos = ({ state }) => {
               </tr>
             </thead>
             <tbody>
-              {memos.map((memo, index) => {
+              {memos.slice(0, visibleCount).map((memo, index) => {
                 return (
                   <tr key={index} className='memo-row'>
                     <td className='name-cell'>
@@ -112,15 +123,22 @@ const Memos = ({ state }) => {
                       {new Date(Number(memo.timestamp) * 1000).toLocaleString()}
                     </td>
                     <td className='message-cell'>{memo.message}</td>
-                    <td className='address-cell'>
+                    <td className='address-cell' title={memo.from}>
                       <span className='address-prefix'>0x</span>
-                      {memo.from.slice(2)}
+                      {shortenAddress(memo.from)}
                     </td>
                   </tr>
                 )
               })}
             </tbody>
           </table>
+          {visibleCount < memos.length && (
+            <div className='load-more-container'>
+              <button className='load-more-btn' onClick={loadMore}>
+                LOAD MORE TRANSACTIONS
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

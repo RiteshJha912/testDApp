@@ -142,6 +142,9 @@ body {
   width: 8px;
   height: 8px;
   background: #FFFFFF;
+}
+
+.connect-btn .account-indicator {
   animation: side-to-side 1s ease-in-out infinite, pulse 2s infinite;
 }
 
